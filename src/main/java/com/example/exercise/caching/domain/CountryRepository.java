@@ -19,6 +19,7 @@ package com.example.exercise.caching.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -45,6 +46,7 @@ public class CountryRepository {
 			"TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US",
 			"UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW");
 
+	@Cacheable("countries")
 	public Country findByCode(String code) {
 		simulateSlowService(); // Removing this line is not an option :)
 		return (SAMPLE_COUNTRY_CODES.contains(code) ? new Country(code) : null);
